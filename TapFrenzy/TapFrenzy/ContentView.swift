@@ -21,6 +21,11 @@ struct ContentView: View {
     @State private var isNewHighScore: Bool = false
     private let startDuration: Double = 10.0
     private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    @State private var multiplier: Int = 1
+    @State private var lastTapDate: Date? = nil
+    private let comboWindow: TimeInterval = 0.5
+    private let maxMultiplier: Int = 5
+    
 
     var body: some View {
         ZStack {
@@ -86,6 +91,12 @@ struct ContentView: View {
                 Text("\(score)")
                     .font(.system(size: 48, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
+                if multiplier > 1 {
+                                    Text("×\(multiplier) COMBO")
+                                        .font(.headline)
+                                        .foregroundColor(.yellow)
+                                        .transition(.scale.combined(with: .opacity))
+                                }
             }
             .padding(.top, 40)
 
@@ -146,6 +157,8 @@ struct ContentView: View {
     }
     
     private func startGame() {
+        multiplier = 1
+        lastTapDate = nil
             score = 0
             timeRemaining = startDuration
             isNewHighScore = false
@@ -169,7 +182,18 @@ struct ContentView: View {
 
         private func handleTap() {
             guard phase == .playing, timeRemaining > 0 else { return }
-            score += 1
+
+            let now = Date()
+            if let last = lastTapDate, now.timeIntervalSince(last) <= comboWindow {
+                multiplier = min(multiplier + 1, maxMultiplier)
+            } else {
+                multiplier = 1
+            }
+            lastTapDate = now
+
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
+                score += multiplier
+            }
         }
     
 }
