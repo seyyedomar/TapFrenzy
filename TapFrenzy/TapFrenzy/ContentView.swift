@@ -20,6 +20,7 @@ struct ContentView: View {
     @State private var highScore: Int = 0
     @State private var isNewHighScore: Bool = false
     private let startDuration: Double = 10.0
+    private let minButtonScale: CGFloat = 0.4
     private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State private var multiplier: Int = 1
     @State private var lastTapDate: Date? = nil
@@ -102,7 +103,8 @@ struct ContentView: View {
 
             Spacer()
 
-            Button(action: handleTap) {
+            Button(action: handleTap)
+            {
                 Circle()
                     .fill(Color.white)
                     .frame(width: 200, height: 200)
@@ -113,6 +115,8 @@ struct ContentView: View {
                     )
                     .shadow(radius: 10)
             }
+            .scaleEffect(buttonScale)
+            .animation(.easeInOut(duration: 0.2), value: buttonScale)
 
             Spacer()
 
@@ -178,6 +182,10 @@ struct ContentView: View {
                 highScore = score
                 isNewHighScore = true
             }
+        }
+        private var buttonScale: CGFloat {
+            let progress = timeRemaining / startDuration
+            return minButtonScale + (1.0 - minButtonScale) * CGFloat(max(progress, 0))
         }
 
         private func handleTap() {
