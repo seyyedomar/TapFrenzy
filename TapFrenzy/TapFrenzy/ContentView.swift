@@ -19,6 +19,8 @@ struct ContentView: View {
     @State private var timeRemaining: Double = 10.0
     @State private var highScore: Int = 0
     @State private var isNewHighScore: Bool = false
+    private let startDuration: Double = 10.0
+    private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         ZStack {
@@ -32,7 +34,9 @@ struct ContentView: View {
             case .gameOver:
                 gameOverView
             }
-        }
+        }.onReceive(timer) { _ in
+            guard phase == .playing else { return }
+            tick()}
     }
 
     private var backgroundGradient: some View {
@@ -60,7 +64,7 @@ struct ContentView: View {
                 .font(.subheadline)
                 .foregroundColor(.white.opacity(0.7))
 
-            Button(action: {}) {
+            Button(action: startGame) {
                 Text("Start Game")
                     .font(.title2.bold())
                     .foregroundColor(.indigo)
@@ -87,7 +91,7 @@ struct ContentView: View {
 
             Spacer()
 
-            Button(action: {}) {
+            Button(action: handleTap) {
                 Circle()
                     .fill(Color.white)
                     .frame(width: 200, height: 200)
@@ -118,11 +122,17 @@ struct ContentView: View {
                 .font(.system(size: 64, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
 
-            Text("High Score: \(highScore)")
-                .font(.subheadline)
-                .foregroundColor(.white.opacity(0.7))
+            if isNewHighScore {
+                            Text("🎉 New High Score!")
+                                .font(.headline)
+                                .foregroundColor(.yellow)
+                        } else {
+                            Text("High Score: \(highScore)")
+                                .font(.subheadline)
+                                .foregroundColor(.white.opacity(0.7))
+                        }
 
-            Button(action: {}) {
+            Button(action: startGame) {
                 Text("Play Again")
                     .font(.title2.bold())
                     .foregroundColor(.indigo)
@@ -134,6 +144,34 @@ struct ContentView: View {
             .padding(.top, 20)
         }
     }
+    
+    private func startGame() {
+            score = 0
+            timeRemaining = startDuration
+            isNewHighScore = false
+            phase = .playing
+        }
+
+        private func tick() {
+            timeRemaining = max(0, timeRemaining - 0.1)
+            if timeRemaining <= 0 {
+                endGame()
+            }
+        }
+
+        private func endGame() {
+            phase = .gameOver
+            if score > highScore {
+                highScore = score
+                isNewHighScore = true
+            }
+        }
+
+        private func handleTap() {
+            guard phase == .playing, timeRemaining > 0 else { return }
+            score += 1
+        }
+    
 }
 
 #Preview {
