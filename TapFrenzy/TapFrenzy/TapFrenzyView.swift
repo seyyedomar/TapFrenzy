@@ -1,23 +1,23 @@
 //
-//  ContentView.swift
+//  TapFrenzyView.swift
 //  TapFrenzy
 //
 //  Created by Seyyed Omar on 2026-07-07.
 //
 import SwiftUI
 
-enum GamePhase {
+enum TapFrenzyPhase {
     case ready
     case playing
     case gameOver
 }
 
-struct ContentView: View {
+struct TapFrenzyView: View {
 
-    @State private var phase: GamePhase = .gameOver
+    @State private var phase: TapFrenzyPhase = .gameOver
     @State private var score: Int = 0
     @State private var timeRemaining: Double = 10.0
-    @State private var highScore: Int = 0
+    @AppStorage("tapFrenzyHighScore") private var highScore: Int = 0
     @State private var isNewHighScore: Bool = false
     private let startDuration: Double = 10.0
     private let minButtonScale: CGFloat = 0.4
@@ -43,6 +43,8 @@ struct ContentView: View {
         }.onReceive(timer) { _ in
             guard phase == .playing else { return }
             tick()}
+        .navigationTitle("Tap Frenzy")
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     private var backgroundGradient: some View {
@@ -207,5 +209,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    NavigationStack { TapFrenzyView() }
 }
