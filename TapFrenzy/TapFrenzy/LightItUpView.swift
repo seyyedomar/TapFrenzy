@@ -185,7 +185,6 @@ struct LightItUpView: View {
         }
     }
 
-    // MARK: - Level-Up Flash Overlay (bonus)
 
     private var levelFlashOverlay: some View {
         Text("LEVEL \(level.rawValue)")
@@ -197,7 +196,6 @@ struct LightItUpView: View {
             .transition(.scale.combined(with: .opacity))
     }
 
-    // MARK: - Game Logic
 
     private func startRound() {
         score = 0
@@ -236,8 +234,7 @@ struct LightItUpView: View {
         }
     }
 
-    /// Turns off any card still lit from the previous cycle (a miss = penalty),
-    /// then lights up a fresh random set of cards for this level.
+  
     private func cycleLitCards() {
         for index in cards.indices where cards[index].isLit {
             cards[index].isLit = false
