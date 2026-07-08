@@ -127,8 +127,8 @@ struct LightItUpView: View {
             Spacer()
 
             LazyVGrid(
-                columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: level.columns),
-                spacing: 12
+                columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: level.columns),
+                spacing: 16
             ) {
                 ForEach(cards) { card in
                     cardView(card)
@@ -142,9 +142,9 @@ struct LightItUpView: View {
     }
 
     private func cardView(_ card: Card) -> some View {
-        RoundedRectangle(cornerRadius: 16)
+        RoundedRectangle(cornerRadius: 20)
             .fill(card.isLit ? level.glowColor : Color.white.opacity(0.15))
-            .frame(height: 70)
+            .frame(height: 140)
             .scaleEffect(card.isLit ? 1.08 : 1.0)
             .shadow(color: card.isLit ? level.glowColor.opacity(0.8) : .clear, radius: card.isLit ? 12 : 0)
             .animation(.easeInOut(duration: 0.15), value: card.isLit)
