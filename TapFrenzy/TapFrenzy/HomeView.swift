@@ -17,7 +17,7 @@ struct HomeView: View {
                 )
                 .ignoresSafeArea()
 
-                VStack(spacing: 28) {
+                VStack(spacing: 24) {
                     Text("Mini Games")
                         .font(.system(size: 40, weight: .heavy, design: .rounded))
                         .foregroundColor(.white)
@@ -33,6 +33,12 @@ struct HomeView: View {
                         LightItUpView()
                     } label: {
                         modeButton(title: "Light It Up", subtitle: "Whack-a-mole — grid grows, window shrinks")
+                    }
+                    
+                    NavigationLink {
+                        QuizRushView()
+                    } label: {
+                        modeButton(title: "Quiz Rush", subtitle: "10 live trivia questions, streak bonus")
                     }
 
                     Spacer()
