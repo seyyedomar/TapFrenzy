@@ -16,6 +16,8 @@
 		79D64E022FFEB438008229CA /* TriviaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E002FFEB437008229CA /* TriviaAPI.swift */; };
 		79D64E052FFEBA9F008229CA /* QuizRushVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E032FFEBA9D008229CA /* QuizRushVM.swift */; };
 		79D64E082FFEC8A7008229CA /* QuizRushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E062FFEC8A6008229CA /* QuizRushView.swift */; };
+		79D64E1130000860008229CA /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E103000085F008229CA /* GameMode.swift */; };
+		79D64E1330000921008229CA /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E1230000908008229CA /* GameSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		79D64E002FFEB437008229CA /* TriviaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaAPI.swift; sourceTree = "<group>"; };
 		79D64E032FFEBA9D008229CA /* QuizRushVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRushVM.swift; sourceTree = "<group>"; };
 		79D64E062FFEC8A6008229CA /* QuizRushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRushView.swift; sourceTree = "<group>"; };
+		79D64E103000085F008229CA /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
+		79D64E1230000908008229CA /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -120,6 +124,8 @@
 		79D64E092FFFBD2F008229CA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				79D64E1230000908008229CA /* GameSession.swift */,
+				79D64E103000085F008229CA /* GameMode.swift */,
 				79D64DF42FFE0F80008229CA /* Card.swift */,
 				79D64DF72FFE1312008229CA /* GameLevel.swift */,
 				79D64DFD2FFEB314008229CA /* TriviaQuestion.swift */,
@@ -328,8 +334,10 @@
 				79D64E052FFEBA9F008229CA /* QuizRushVM.swift in Sources */,
 				79D64DFC2FFE1748008229CA /* LightItUpView.swift in Sources */,
 				79D64E082FFEC8A7008229CA /* QuizRushView.swift in Sources */,
+				79D64E1130000860008229CA /* GameMode.swift in Sources */,
 				79D64DFF2FFEB315008229CA /* TriviaQuestion.swift in Sources */,
 				79D64E022FFEB438008229CA /* TriviaAPI.swift in Sources */,
+				79D64E1330000921008229CA /* GameSession.swift in Sources */,
 				79D64DF62FFE125F008229CA /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
