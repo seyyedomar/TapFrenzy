@@ -6,6 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		79D64DCD2FFD6BBB008229CA /* TapFrenzyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64DCC2FFD6BBB008229CA /* TapFrenzyView.swift */; };
+		79D64DF32FFE0EE2008229CA /* HomeTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64DF12FFE0ED8008229CA /* HomeTab.swift */; };
+		79D64DF62FFE125F008229CA /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64DF42FFE0F80008229CA /* Card.swift */; };
+		79D64DF92FFE1316008229CA /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64DF72FFE1312008229CA /* GameLevel.swift */; };
+		79D64DFC2FFE1748008229CA /* LightItUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64DFA2FFE1744008229CA /* LightItUpView.swift */; };
+		79D64DFF2FFEB315008229CA /* TriviaQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64DFD2FFEB314008229CA /* TriviaQuestion.swift */; };
+		79D64E022FFEB438008229CA /* TriviaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E002FFEB437008229CA /* TriviaAPI.swift */; };
+		79D64E052FFEBA9F008229CA /* QuizRushVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E032FFEBA9D008229CA /* QuizRushVM.swift */; };
+		79D64E082FFEC8A7008229CA /* QuizRushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E062FFEC8A6008229CA /* QuizRushView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		79D64DD52FFD6BBD008229CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -25,8 +37,17 @@
 
 /* Begin PBXFileReference section */
 		79D64DC72FFD6BBB008229CA /* TapFrenzy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapFrenzy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79D64DCC2FFD6BBB008229CA /* TapFrenzyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapFrenzyView.swift; sourceTree = "<group>"; };
 		79D64DD42FFD6BBD008229CA /* TapFrenzyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TapFrenzyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D64DDE2FFD6BBD008229CA /* TapFrenzyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TapFrenzyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		79D64DF12FFE0ED8008229CA /* HomeTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTab.swift; sourceTree = "<group>"; };
+		79D64DF42FFE0F80008229CA /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		79D64DF72FFE1312008229CA /* GameLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
+		79D64DFA2FFE1744008229CA /* LightItUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightItUpView.swift; sourceTree = "<group>"; };
+		79D64DFD2FFEB314008229CA /* TriviaQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaQuestion.swift; sourceTree = "<group>"; };
+		79D64E002FFEB437008229CA /* TriviaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaAPI.swift; sourceTree = "<group>"; };
+		79D64E032FFEBA9D008229CA /* QuizRushVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRushVM.swift; sourceTree = "<group>"; };
+		79D64E062FFEC8A6008229CA /* QuizRushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRushView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +96,10 @@
 		79D64DBE2FFD6BBB008229CA = {
 			isa = PBXGroup;
 			children = (
+				79D64E0C2FFFBD99008229CA /* Views */,
+				79D64E0B2FFFBD8A008229CA /* Services */,
+				79D64E0A2FFFBD81008229CA /* ViewModels */,
+				79D64E092FFFBD2F008229CA /* Models */,
 				79D64DC92FFD6BBB008229CA /* TapFrenzy */,
 				79D64DD72FFD6BBD008229CA /* TapFrenzyTests */,
 				79D64DE12FFD6BBD008229CA /* TapFrenzyUITests */,
@@ -90,6 +115,67 @@
 				79D64DDE2FFD6BBD008229CA /* TapFrenzyUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		79D64E092FFFBD2F008229CA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				79D64DF42FFE0F80008229CA /* Card.swift */,
+				79D64DF72FFE1312008229CA /* GameLevel.swift */,
+				79D64DFD2FFEB314008229CA /* TriviaQuestion.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		79D64E0A2FFFBD81008229CA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				79D64E032FFEBA9D008229CA /* QuizRushVM.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		79D64E0B2FFFBD8A008229CA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				79D64E002FFEB437008229CA /* TriviaAPI.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		79D64E0C2FFFBD99008229CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				79D64E0F2FFFBDC7008229CA /* Shared */,
+				79D64E0E2FFFBDBD008229CA /* Games */,
+				79D64E0D2FFFBDA9008229CA /* Tabs */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		79D64E0D2FFFBDA9008229CA /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				79D64DF12FFE0ED8008229CA /* HomeTab.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		79D64E0E2FFFBDBD008229CA /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				79D64DCC2FFD6BBB008229CA /* TapFrenzyView.swift */,
+				79D64DFA2FFE1744008229CA /* LightItUpView.swift */,
+				79D64E062FFEC8A6008229CA /* QuizRushView.swift */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		79D64E0F2FFFBDC7008229CA /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +322,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D64DF32FFE0EE2008229CA /* HomeTab.swift in Sources */,
+				79D64DCD2FFD6BBB008229CA /* TapFrenzyView.swift in Sources */,
+				79D64DF92FFE1316008229CA /* GameLevel.swift in Sources */,
+				79D64E052FFEBA9F008229CA /* QuizRushVM.swift in Sources */,
+				79D64DFC2FFE1748008229CA /* LightItUpView.swift in Sources */,
+				79D64E082FFEC8A7008229CA /* QuizRushView.swift in Sources */,
+				79D64DFF2FFEB315008229CA /* TriviaQuestion.swift in Sources */,
+				79D64E022FFEB438008229CA /* TriviaAPI.swift in Sources */,
+				79D64DF62FFE125F008229CA /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
