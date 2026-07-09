@@ -3,7 +3,6 @@
 //  TapFrenzy
 //
 //  Created by Seyyed Omar on 2026-07-08.
-//
 import Foundation
 
 enum QuizViewState {
@@ -18,7 +17,7 @@ enum AnswerFeedback: Equatable {
 }
 
 @MainActor
-final class QuizViewModel: ObservableObject {
+final class QuizRushVM: ObservableObject {
 
     @Published var viewState: QuizViewState = .loading
     @Published var questions: [TriviaQuestion] = []
@@ -30,7 +29,7 @@ final class QuizViewModel: ObservableObject {
     @Published var answerFeedback: AnswerFeedback? = nil
     @Published var isRoundComplete: Bool = false
 
-    private let service = TriviaService()
+    private let api = TriviaService()
 
     var currentQuestion: TriviaQuestion? {
         guard questions.indices.contains(currentIndex) else { return nil }
@@ -43,7 +42,7 @@ final class QuizViewModel: ObservableObject {
     func loadQuestions() async {
         viewState = .loading
         do {
-            let fetched = try await service.fetchQuestions()
+            let fetched = try await api.fetchQuestions()
             questions = fetched
             currentIndex = 0
             score = 0
@@ -97,6 +96,7 @@ final class QuizViewModel: ObservableObject {
             shuffleAnswersForCurrentQuestion()
         } else {
             isRoundComplete = true
+            GameSessionRecorder.record(mode: .quizRush, score: score)
         }
     }
 }

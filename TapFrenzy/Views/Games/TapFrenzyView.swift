@@ -6,33 +6,15 @@
 //
 import SwiftUI
 
-enum TapFrenzyPhase {
-    case ready
-    case playing
-    case gameOver
-}
-
 struct TapFrenzyView: View {
-
-    @State private var phase: TapFrenzyPhase = .ready
-    @State private var score: Int = 0
-    @State private var timeRemaining: Double = 10.0
-    @AppStorage("tapFrenzyHighScore") private var highScore: Int = 0
-    @State private var isNewHighScore: Bool = false
-    private let startDuration: Double = 10.0
-    private let minButtonScale: CGFloat = 0.4
-    private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-    @State private var multiplier: Int = 1
-    @State private var lastTapDate: Date? = nil
-    private let comboWindow: TimeInterval = 0.5
-    private let maxMultiplier: Int = 5
-    
+    @StateObject private var vm = TapFrenzyVM()
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         ZStack {
             backgroundGradient
 
-            switch phase {
+            switch vm.phase {
             case .ready:
                 readyView
             case .playing:
@@ -40,11 +22,19 @@ struct TapFrenzyView: View {
             case .gameOver:
                 gameOverView
             }
-        }.onReceive(timer) { _ in
-            guard phase == .playing else { return }
-            tick()}
+        }
         .navigationTitle("Tap Frenzy")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.white.opacity(0.85))
+                }
+            }
+        }
     }
 
     private var backgroundGradient: some View {
@@ -68,11 +58,11 @@ struct TapFrenzyView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 32)
 
-            Text("High Score: \(highScore)")
+            Text("High Score: \(vm.highScore)")
                 .font(.subheadline)
                 .foregroundColor(.white.opacity(0.7))
 
-            Button(action: startGame) {
+            Button(action: vm.start) {
                 Text("Start Game")
                     .font(.title2.bold())
                     .foregroundColor(.indigo)
@@ -91,22 +81,22 @@ struct TapFrenzyView: View {
                 Text("SCORE")
                     .font(.caption)
                     .foregroundColor(.white.opacity(0.7))
-                Text("\(score)")
+                Text("\(vm.score)")
                     .font(.system(size: 48, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
-                if multiplier > 1 {
-                                    Text("×\(multiplier) COMBO")
-                                        .font(.headline)
-                                        .foregroundColor(.yellow)
-                                        .transition(.scale.combined(with: .opacity))
-                                }
+
+                if vm.multiplier > 1 {
+                    Text("×\(vm.multiplier) COMBO")
+                        .font(.headline)
+                        .foregroundColor(.yellow)
+                        .transition(.scale.combined(with: .opacity))
+                }
             }
-            .padding(.top, 40)
+            .padding(.top, 20)
 
             Spacer()
 
-            Button(action: handleTap)
-            {
+            Button(action: vm.tap) {
                 Circle()
                     .fill(Color.white)
                     .frame(width: 200, height: 200)
@@ -117,15 +107,15 @@ struct TapFrenzyView: View {
                     )
                     .shadow(radius: 10)
             }
-            .scaleEffect(buttonScale)
-            .animation(.easeInOut(duration: 0.2), value: buttonScale)
+            .scaleEffect(vm.buttonScale)
+            .animation(.easeInOut(duration: 0.2), value: vm.buttonScale)
 
             Spacer()
 
-            Text(String(format: "%.1fs", timeRemaining))
+            Text(String(format: "%.1fs", vm.timeRemaining))
                 .font(.title.monospacedDigit())
                 .foregroundColor(.white)
-                .padding(.bottom, 40)
+                .padding(.bottom, 30)
         }
     }
 
@@ -135,21 +125,21 @@ struct TapFrenzyView: View {
                 .font(.system(size: 36, weight: .heavy, design: .rounded))
                 .foregroundColor(.white)
 
-            Text("\(score)")
+            Text("\(vm.score)")
                 .font(.system(size: 64, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
 
-            if isNewHighScore {
-                            Text("🎉 New High Score!")
-                                .font(.headline)
-                                .foregroundColor(.yellow)
-                        } else {
-                            Text("High Score: \(highScore)")
-                                .font(.subheadline)
-                                .foregroundColor(.white.opacity(0.7))
-                        }
+            if vm.isNewHighScore {
+                Text("🎉 New High Score!")
+                    .font(.headline)
+                    .foregroundColor(.yellow)
+            } else {
+                Text("High Score: \(vm.highScore)")
+                    .font(.subheadline)
+                    .foregroundColor(.white.opacity(0.7))
+            }
 
-            Button(action: startGame) {
+            Button(action: vm.start) {
                 Text("Play Again")
                     .font(.title2.bold())
                     .foregroundColor(.indigo)
@@ -161,51 +151,6 @@ struct TapFrenzyView: View {
             .padding(.top, 20)
         }
     }
-    
-    private func startGame() {
-        multiplier = 1
-        lastTapDate = nil
-            score = 0
-            timeRemaining = startDuration
-            isNewHighScore = false
-            phase = .playing
-        }
-
-        private func tick() {
-            timeRemaining = max(0, timeRemaining - 0.1)
-            if timeRemaining <= 0 {
-                endGame()
-            }
-        }
-
-        private func endGame() {
-            phase = .gameOver
-            if score > highScore {
-                highScore = score
-                isNewHighScore = true
-            }
-        }
-        private var buttonScale: CGFloat {
-            let progress = timeRemaining / startDuration
-            return minButtonScale + (1.0 - minButtonScale) * CGFloat(max(progress, 0))
-        }
-
-        private func handleTap() {
-            guard phase == .playing, timeRemaining > 0 else { return }
-
-            let now = Date()
-            if let last = lastTapDate, now.timeIntervalSince(last) <= comboWindow {
-                multiplier = min(multiplier + 1, maxMultiplier)
-            } else {
-                multiplier = 1
-            }
-            lastTapDate = now
-
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
-                score += multiplier
-            }
-        }
-    
 }
 
 #Preview {

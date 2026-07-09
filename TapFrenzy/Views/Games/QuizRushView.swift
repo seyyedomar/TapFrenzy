@@ -1,27 +1,21 @@
-//
-//  QuizRushView.swift
-//  TapFrenzy
-//
-//  Created by Seyyed Omar on 2026-07-08.
-//
-
 import SwiftUI
 
 struct QuizRushView: View {
-    @StateObject private var viewModel = QuizViewModel()
+    @StateObject private var vm = QuizRushVM()
     @State private var shakeAmount: CGFloat = 0
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         ZStack {
             backgroundGradient
 
-            switch viewModel.viewState {
+            switch vm.viewState {
             case .loading:
                 loadingView
             case .failed:
                 failedView
             case .loaded:
-                if viewModel.isRoundComplete {
+                if vm.isRoundComplete {
                     resultsView
                 } else {
                     quizView
@@ -29,9 +23,9 @@ struct QuizRushView: View {
             }
         }
         .task {
-            await viewModel.loadQuestions()
+            await vm.loadQuestions()
         }
-        .onChange(of: viewModel.answerFeedback) { feedback in
+        .onChange(of: vm.answerFeedback) { _, feedback in
             guard feedback == .wrong else { return }
             withAnimation(.default.repeatCount(3, autoreverses: true).speed(6)) {
                 shakeAmount = 12
@@ -42,6 +36,16 @@ struct QuizRushView: View {
         }
         .navigationTitle("Quiz Rush")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.white.opacity(0.85))
+                }
+            }
+        }
     }
 
     private var backgroundGradient: some View {
@@ -52,7 +56,7 @@ struct QuizRushView: View {
         )
         .ignoresSafeArea()
     }
-// LOADING STATE
+
     private var loadingView: some View {
         VStack(spacing: 16) {
             ProgressView()
@@ -63,7 +67,7 @@ struct QuizRushView: View {
                 .foregroundColor(.white.opacity(0.8))
         }
     }
-// FAILED STATE
+
     private var failedView: some View {
         VStack(spacing: 20) {
             Image(systemName: "wifi.exclamationmark")
@@ -77,7 +81,7 @@ struct QuizRushView: View {
                 .foregroundColor(.white.opacity(0.8))
 
             Button {
-                Task { await viewModel.loadQuestions() }
+                Task { await vm.loadQuestions() }
             } label: {
                 Text("Retry")
                     .font(.title2.bold())
@@ -90,16 +94,16 @@ struct QuizRushView: View {
         }
         .padding(.horizontal, 32)
     }
-//LOADED
+
     private var quizView: some View {
         VStack(spacing: 24) {
             HStack {
-                Text("Question \(viewModel.questionNumber) of \(viewModel.totalQuestions)")
+                Text("Question \(vm.questionNumber) of \(vm.totalQuestions)")
                     .font(.subheadline.bold())
                     .foregroundColor(.white.opacity(0.85))
                 Spacer()
-                if viewModel.streak > 1 {
-                    Text("🔥 \(viewModel.streak) streak")
+                if vm.streak > 1 {
+                    Text("🔥 \(vm.streak) streak")
                         .font(.subheadline.bold())
                         .foregroundColor(.yellow)
                 }
@@ -107,11 +111,11 @@ struct QuizRushView: View {
             .padding(.horizontal)
             .padding(.top, 12)
 
-            Text("Score: \(viewModel.score)")
+            Text("Score: \(vm.score)")
                 .font(.headline)
                 .foregroundColor(.white)
 
-            if let question = viewModel.currentQuestion {
+            if let question = vm.currentQuestion {
                 Text(question.decodedQuestion)
                     .font(.title3.bold())
                     .foregroundColor(.white)
@@ -121,7 +125,7 @@ struct QuizRushView: View {
             }
 
             VStack(spacing: 14) {
-                ForEach(viewModel.shuffledAnswers, id: \.self) { answer in
+                ForEach(vm.shuffledAnswers, id: \.self) { answer in
                     answerButton(answer)
                 }
             }
@@ -133,8 +137,8 @@ struct QuizRushView: View {
     }
 
     private func answerButton(_ answer: String) -> some View {
-        let feedback = viewModel.answerFeedback
-        let isCorrectAnswer = answer == viewModel.currentQuestion?.decodedCorrectAnswer
+        let feedback = vm.answerFeedback
+        let isCorrectAnswer = answer == vm.currentQuestion?.decodedCorrectAnswer
 
         var backgroundColor: Color = .white
         if let feedback {
@@ -148,7 +152,7 @@ struct QuizRushView: View {
         }
 
         return Button {
-            viewModel.selectAnswer(answer)
+            vm.selectAnswer(answer)
         } label: {
             Text(answer)
                 .font(.body.bold())
@@ -158,26 +162,26 @@ struct QuizRushView: View {
                 .background(backgroundColor)
                 .clipShape(RoundedRectangle(cornerRadius: 14))
         }
-        .disabled(viewModel.answerFeedback != nil)
-        .animation(.easeInOut(duration: 0.2), value: viewModel.answerFeedback)
+        .disabled(vm.answerFeedback != nil)
+        .animation(.easeInOut(duration: 0.2), value: vm.answerFeedback)
     }
-// RESULTS STATE
+
     private var resultsView: some View {
         VStack(spacing: 20) {
             Text("Round Complete!")
                 .font(.system(size: 32, weight: .heavy, design: .rounded))
                 .foregroundColor(.white)
 
-            Text("\(viewModel.score)")
+            Text("\(vm.score)")
                 .font(.system(size: 60, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
 
-            Text("Best Streak: \(viewModel.bestStreak)")
+            Text("Best Streak: \(vm.bestStreak)")
                 .font(.subheadline)
                 .foregroundColor(.white.opacity(0.8))
 
             Button {
-                Task { await viewModel.loadQuestions() }
+                Task { await vm.loadQuestions() }
             } label: {
                 Text("Play Again")
                     .font(.title2.bold())
