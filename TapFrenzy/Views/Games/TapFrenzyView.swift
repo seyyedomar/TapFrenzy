@@ -14,7 +14,7 @@ enum TapFrenzyPhase {
 
 struct TapFrenzyView: View {
 
-    @State private var phase: TapFrenzyPhase = .gameOver
+    @State private var phase: TapFrenzyPhase = .ready
     @State private var score: Int = 0
     @State private var timeRemaining: Double = 10.0
     @AppStorage("tapFrenzyHighScore") private var highScore: Int = 0

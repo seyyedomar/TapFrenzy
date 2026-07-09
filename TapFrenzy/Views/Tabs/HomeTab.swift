@@ -26,19 +26,19 @@ struct HomeView: View {
                     NavigationLink {
                         TapFrenzyView()
                     } label: {
-                        modeButton(title: "Tap Frenzy", subtitle: "Tap fast, beat the 10s clock")
+                        modeButton(title: "Tap Frenzy", icon: "hand.tap", color: .indigo)
                     }
 
                     NavigationLink {
                         LightItUpView()
                     } label: {
-                        modeButton(title: "Light It Up", subtitle: "Whack-a-mole — grid grows, window shrinks")
+                        modeButton(title: "Light It Up", icon: "bolt.fill", color: .orange)
                     }
                     
                     NavigationLink {
                         QuizRushView()
                     } label: {
-                        modeButton(title: "Quiz Rush", subtitle: "10 live trivia questions, streak bonus")
+                        modeButton(title: "Quiz Rush", icon: "questionmark.circle", color: .green)
                     }
 
                     Spacer()
@@ -48,15 +48,30 @@ struct HomeView: View {
         }
     }
 
-    private func modeButton(title: String, subtitle: String) -> some View {
-        VStack(spacing: 6) {
-            Text(title).font(.title2.bold())
-            Text(subtitle).font(.subheadline).foregroundColor(.secondary)
+    private func modeButton(title: String, icon: String, color: Color) -> some View {
+        HStack(spacing: 16) {
+            ZStack {
+                Circle()
+                    .fill(color.opacity(0.15))
+                    .frame(width: 52, height: 52)
+                Image(systemName: icon)
+                    .font(.title2.bold())
+                    .foregroundColor(color)
+            }
+
+            Text(title)
+                .font(.title3.bold())
+                .foregroundColor(.indigo)
+
+            Spacer()
+
+            Image(systemName: "chevron.right")
+                .font(.subheadline.bold())
+                .foregroundColor(.secondary)
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 20)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 16)
         .background(Color.white)
-        .foregroundColor(.indigo)
         .clipShape(RoundedRectangle(cornerRadius: 20))
     }
 }
