@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct HomeView: View {
+struct HomeTab: View {
     var body: some View {
         NavigationStack {
             ZStack {
@@ -77,5 +77,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeTab()
 }

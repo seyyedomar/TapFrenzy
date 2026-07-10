@@ -20,6 +20,9 @@
 		79D64E1330000921008229CA /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E1230000908008229CA /* GameSession.swift */; };
 		79D64E1530000AF5008229CA /* TapFrenzyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E1430000AF4008229CA /* TapFrenzyVM.swift */; };
 		79D64E1730000B68008229CA /* LightItUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E1630000B67008229CA /* LightItUpVM.swift */; };
+		79D64E193000A75C008229CA /* StatsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E183000A75A008229CA /* StatsTab.swift */; };
+		79D64E1B3000A777008229CA /* MapTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E1A3000A776008229CA /* MapTab.swift */; };
+		79D64E1D3000A78A008229CA /* SettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E1C3000A784008229CA /* SettingsTab.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		79D64E1230000908008229CA /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		79D64E1430000AF4008229CA /* TapFrenzyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapFrenzyVM.swift; sourceTree = "<group>"; };
 		79D64E1630000B67008229CA /* LightItUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightItUpVM.swift; sourceTree = "<group>"; };
+		79D64E183000A75A008229CA /* StatsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTab.swift; sourceTree = "<group>"; };
+		79D64E1A3000A776008229CA /* MapTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTab.swift; sourceTree = "<group>"; };
+		79D64E1C3000A784008229CA /* SettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTab.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -168,6 +174,9 @@
 		79D64E0D2FFFBDA9008229CA /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				79D64E1A3000A776008229CA /* MapTab.swift */,
+				79D64E1C3000A784008229CA /* SettingsTab.swift */,
+				79D64E183000A75A008229CA /* StatsTab.swift */,
 				79D64DF12FFE0ED8008229CA /* HomeTab.swift */,
 			);
 			path = Tabs;
@@ -336,14 +345,17 @@
 			files = (
 				79D64DF32FFE0EE2008229CA /* HomeTab.swift in Sources */,
 				79D64DCD2FFD6BBB008229CA /* TapFrenzyView.swift in Sources */,
+				79D64E1D3000A78A008229CA /* SettingsTab.swift in Sources */,
 				79D64DF92FFE1316008229CA /* GameLevel.swift in Sources */,
 				79D64E052FFEBA9F008229CA /* QuizRushVM.swift in Sources */,
 				79D64E1530000AF5008229CA /* TapFrenzyVM.swift in Sources */,
+				79D64E193000A75C008229CA /* StatsTab.swift in Sources */,
 				79D64E1730000B68008229CA /* LightItUpVM.swift in Sources */,
 				79D64DFC2FFE1748008229CA /* LightItUpView.swift in Sources */,
 				79D64E082FFEC8A7008229CA /* QuizRushView.swift in Sources */,
 				79D64E1130000860008229CA /* GameMode.swift in Sources */,
 				79D64DFF2FFEB315008229CA /* TriviaQuestion.swift in Sources */,
+				79D64E1B3000A777008229CA /* MapTab.swift in Sources */,
 				79D64E022FFEB438008229CA /* TriviaAPI.swift in Sources */,
 				79D64E1330000921008229CA /* GameSession.swift in Sources */,
 				79D64DF62FFE125F008229CA /* Card.swift in Sources */,
