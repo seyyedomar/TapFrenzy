@@ -20,7 +20,14 @@ struct TapFrenzyView: View {
             case .playing:
                 gameView
             case .gameOver:
-                gameOverView
+                ResultView(
+                    mode: .tapFrenzy,
+                    score: vm.score,
+                    isNewHighScore: vm.isNewHighScore,
+                    highScore: vm.highScore,
+                    extraInfo: nil,
+                    onPlayAgain: vm.start
+                )
             }
         }
         .navigationTitle("Tap Frenzy")

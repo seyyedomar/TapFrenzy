@@ -20,7 +20,14 @@ struct LightItUpView: View {
             case .playing:
                 gameView
             case .gameOver:
-                gameOverView
+                ResultView(
+                    mode: .lightItUp,
+                    score: vm.score,
+                    isNewHighScore: vm.isNewHighScore,
+                    highScore: vm.highScore,
+                    extraInfo: nil,
+                    onPlayAgain: vm.start
+                )
             }
 
             if vm.showLevelFlash {

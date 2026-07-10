@@ -16,7 +16,14 @@ struct QuizRushView: View {
                 failedView
             case .loaded:
                 if vm.isRoundComplete {
-                    resultsView
+                    ResultView(
+                        mode: .quizRush,
+                        score: vm.score,
+                        isNewHighScore: false,
+                        highScore: vm.score,
+                        extraInfo: "Best Streak: \(vm.bestStreak)",
+                        onPlayAgain: { Task { await vm.loadQuestions() } }
+                    )
                 } else {
                     quizView
                 }
