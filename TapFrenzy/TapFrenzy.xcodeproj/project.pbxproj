@@ -25,6 +25,7 @@
 		79D64E1D3000A78A008229CA /* SettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E1C3000A784008229CA /* SettingsTab.swift */; };
 		79D64E1F3000B149008229CA /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E1E3000B147008229CA /* LocationService.swift */; };
 		79D64E213000B1F0008229CA /* StatsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E203000B1EE008229CA /* StatsVM.swift */; };
+		79D64E2430010D1D008229CA /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E2330010D17008229CA /* NotificationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		79D64E1C3000A784008229CA /* SettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTab.swift; sourceTree = "<group>"; };
 		79D64E1E3000B147008229CA /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		79D64E203000B1EE008229CA /* StatsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVM.swift; sourceTree = "<group>"; };
+		79D64E2330010D17008229CA /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -161,6 +163,7 @@
 		79D64E0B2FFFBD8A008229CA /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				79D64E2330010D17008229CA /* NotificationService.swift */,
 				79D64E1E3000B147008229CA /* LocationService.swift */,
 				79D64E002FFEB437008229CA /* TriviaAPI.swift */,
 			);
@@ -357,6 +360,7 @@
 				79D64E1530000AF5008229CA /* TapFrenzyVM.swift in Sources */,
 				79D64E193000A75C008229CA /* StatsTab.swift in Sources */,
 				79D64E1730000B68008229CA /* LightItUpVM.swift in Sources */,
+				79D64E2430010D1D008229CA /* NotificationService.swift in Sources */,
 				79D64DFC2FFE1748008229CA /* LightItUpView.swift in Sources */,
 				79D64E082FFEC8A7008229CA /* QuizRushView.swift in Sources */,
 				79D64E1130000860008229CA /* GameMode.swift in Sources */,
