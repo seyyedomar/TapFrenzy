@@ -23,6 +23,8 @@
 		79D64E193000A75C008229CA /* StatsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E183000A75A008229CA /* StatsTab.swift */; };
 		79D64E1B3000A777008229CA /* MapTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E1A3000A776008229CA /* MapTab.swift */; };
 		79D64E1D3000A78A008229CA /* SettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E1C3000A784008229CA /* SettingsTab.swift */; };
+		79D64E1F3000B149008229CA /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E1E3000B147008229CA /* LocationService.swift */; };
+		79D64E213000B1F0008229CA /* StatsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E203000B1EE008229CA /* StatsVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		79D64E183000A75A008229CA /* StatsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTab.swift; sourceTree = "<group>"; };
 		79D64E1A3000A776008229CA /* MapTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTab.swift; sourceTree = "<group>"; };
 		79D64E1C3000A784008229CA /* SettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTab.swift; sourceTree = "<group>"; };
+		79D64E1E3000B147008229CA /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		79D64E203000B1EE008229CA /* StatsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -146,6 +150,7 @@
 		79D64E0A2FFFBD81008229CA /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				79D64E203000B1EE008229CA /* StatsVM.swift */,
 				79D64E1630000B67008229CA /* LightItUpVM.swift */,
 				79D64E1430000AF4008229CA /* TapFrenzyVM.swift */,
 				79D64E032FFEBA9D008229CA /* QuizRushVM.swift */,
@@ -156,6 +161,7 @@
 		79D64E0B2FFFBD8A008229CA /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				79D64E1E3000B147008229CA /* LocationService.swift */,
 				79D64E002FFEB437008229CA /* TriviaAPI.swift */,
 			);
 			path = Services;
@@ -358,6 +364,8 @@
 				79D64E1B3000A777008229CA /* MapTab.swift in Sources */,
 				79D64E022FFEB438008229CA /* TriviaAPI.swift in Sources */,
 				79D64E1330000921008229CA /* GameSession.swift in Sources */,
+				79D64E213000B1F0008229CA /* StatsVM.swift in Sources */,
+				79D64E1F3000B149008229CA /* LocationService.swift in Sources */,
 				79D64DF62FFE125F008229CA /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
