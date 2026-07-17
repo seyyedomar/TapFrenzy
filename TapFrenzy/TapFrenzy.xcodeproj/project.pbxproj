@@ -28,6 +28,7 @@
 		79D64E2430010D1D008229CA /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E2330010D17008229CA /* NotificationService.swift */; };
 		79D64E2630011312008229CA /* ScoreBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E253001130B008229CA /* ScoreBadge.swift */; };
 		79D64E2830011323008229CA /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D64E2730011322008229CA /* ResultView.swift */; };
+		79D64E2C300A2C7A008229CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 79D64E2B300A2C70008229CA /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		79D64E2330010D17008229CA /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		79D64E253001130B008229CA /* ScoreBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBadge.swift; sourceTree = "<group>"; };
 		79D64E2730011322008229CA /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		79D64E2B300A2C70008229CA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -120,6 +122,7 @@
 		79D64DBE2FFD6BBB008229CA = {
 			isa = PBXGroup;
 			children = (
+				79D64E2B300A2C70008229CA /* README.md */,
 				79D64E0C2FFFBD99008229CA /* Views */,
 				79D64E0B2FFFBD8A008229CA /* Services */,
 				79D64E0A2FFFBD81008229CA /* ViewModels */,
@@ -334,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D64E2C300A2C7A008229CA /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
